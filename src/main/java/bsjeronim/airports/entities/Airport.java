@@ -141,10 +141,6 @@ public class Airport {
         this.timezone = timezone;
     }
 
-    
-    
-    
-    
-    
+
 } 
 
