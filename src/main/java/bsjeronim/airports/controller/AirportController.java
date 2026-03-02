@@ -4,6 +4,7 @@
  */
 package bsjeronim.airports.controller;
 
+import bsjeronim.airports.DTO.AirportMinDTO;
 import bsjeronim.airports.entities.Airport;
 import bsjeronim.airports.service.AirportService;
 import java.util.List;
@@ -50,4 +51,25 @@ public class AirportController {
             return ResponseEntity.ok(result);
         }
     }
+    
+    @GetMapping ("/country/{countryName}")
+    public ResponseEntity<List<AirportMinDTO>> findByCountryIgnoreCase(@PathVariable String countryName){
+        
+        List<AirportMinDTO> result = airportService.findByCountry(countryName);
+        if (result.isEmpty()) {
+            //ops, lista vazia
+            //notFound devolve 404
+            return ResponseEntity.notFound().build();
+            
+        } else {
+            //eba tem dados
+            // ok devolve 200
+            return ResponseEntity.ok(result);
+            
+        }
+        
+    }
+
+
+
 }

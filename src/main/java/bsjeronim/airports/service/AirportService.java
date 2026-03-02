@@ -4,6 +4,7 @@
  */
 package bsjeronim.airports.service;
 
+import bsjeronim.airports.DTO.AirportMinDTO;
 import bsjeronim.airports.entities.Airport;
 import bsjeronim.airports.repositories.AirportRepository;
 
@@ -27,6 +28,7 @@ public class AirportService {
         return result;
     }
 
+
     //retorna DTO Airports filtrado por cidade.
     //@param city
     //@return
@@ -35,4 +37,17 @@ public class AirportService {
         return result;
     }
 
+    //retorna DTO AirportMinDto filtrado por country
+    //@param country
+    //@return
+    public List<AirportMinDTO> findByCountry(String country) {
+        List<Airport> resultAirport = airportRepository.findByCountryIgnoreCase(country);
+
+        List<AirportMinDTO> resultDTO = resultAirport.stream()
+                .map(x -> new AirportMinDTO(x)).toList();
+
+        return resultDTO;
+    }
 }
+
+
